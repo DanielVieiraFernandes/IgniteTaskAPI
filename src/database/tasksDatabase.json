@@ -1,0 +1,28 @@
+{
+    "tasks": [
+        {
+            "id": "3428c384-46cf-4b8e-80e0-77db4212180c",
+            "title": "Ir para a academia",
+            "description": "Ir para a academia",
+            "completed_at": "2025-01-28T20:14:28.346Z",
+            "created_at": "2025-01-28T19:50:37.350Z",
+            "updated_at": "2025-01-28T19:50:37.350Z"
+        },
+        {
+            "id": "681212e6-f0ea-4b89-b684-d380eead1831",
+            "title": "Ir para a academia",
+            "description": "Ir para a academia",
+            "completed_at": "2025-01-28T20:11:53.981Z",
+            "created_at": "2025-01-28T19:50:47.471Z",
+            "updated_at": "2025-01-28T19:50:47.471Z"
+        },
+        {
+            "id": "8a7ef748-1367-46e6-92a2-c6db23be582f",
+            "title": "Ir para a academia",
+            "description": "Ir para a academia",
+            "completed_at": "2025-01-28T20:08:48.928Z",
+            "created_at": "2025-01-28T19:51:03.148Z",
+            "updated_at": "2025-01-28T19:51:03.148Z"
+        }
+    ]
+}
