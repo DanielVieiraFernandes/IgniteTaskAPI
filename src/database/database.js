@@ -35,6 +35,33 @@ export class Database {
     return data;
   }
 
+  delete(table, id) {
+    const taskIndex = this.#database[table].findIndex((task) => task.id === id);
+
+    if (taskIndex > -1) {
+      this.#database[table].splice(taskIndex, 1);
+      this.#persist();
+
+      return "Task deleted successfully";
+    }
+
+    return "Not found";
+  }
+
+  update(table, id, data) {
+    const taskIndex = this.#database[table].findIndex((task) => task.id === id);
+
+    if (taskIndex > -1) {
+      this.#database[table] = this.#database[table].map((task) =>
+        task.id === id ? { ...task, ...data } : task
+      );
+      this.#persist();
+      return "Task updated successfully";
+    }
+
+    return "Task not found";
+  }
+
   markAsCompleted(table, id) {
     const taskIndex = this.#database[table].findIndex((task) => task.id === id);
 

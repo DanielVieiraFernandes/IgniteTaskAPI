@@ -1,11 +1,12 @@
 import { Database } from "../database/database.js";
 import { randomUUID } from "node:crypto";
+import { routePath } from "../utils/route-path.js";
 const database = new Database();
 
 export const routes = [
   {
     method: "GET",
-    path: "/tasks",
+    path: routePath("/tasks"),
     handler: (req, res) => {
       const tasks = database.select("tasks");
       console.log(tasks);
@@ -15,8 +16,8 @@ export const routes = [
   },
   {
     method: "POST",
-    path: "/tasks",
-    handler: async (req, res) => {
+    path: routePath("/tasks"),
+    handler: (req, res) => {
       const { title, description } = req.body;
 
       const task = {
@@ -35,20 +36,38 @@ export const routes = [
   },
   {
     method: "DELETE",
-    path: "/tasks",
-    handler: async (req, res) => {},
+    path: routePath("/tasks/:id"),
+    handler: async (req, res) => {
+      const { id } = req.params;
+
+      const del = database.delete("tasks", id);
+
+      res.writeHead(201).end(del);
+    },
   },
   {
     method: "PUT",
-    path: "/tasks",
-    handler: async (req, res) => {},
+    path: routePath("/tasks/:id"),
+    handler: (req, res) => {
+      const { title, description } = req.body;
+      const { id } = req.params;
+
+      const update = database.update("tasks", id, {
+        title: title || null,
+        description: description || null,
+        updated_at: new Date().toISOString(),
+      });
+
+      res.writeHead(201).end(update);
+    },
   },
   {
     method: "PATCH",
-    path: "/tasks",
+    path: routePath("/tasks/:id"),
     handler: async (req, res) => {
+      const { id } = req.params;
 
-      database.markAsCompleted("tasks", "3428c384-46cf-4b8e-80e0-77db4212180c");
+      database.markAsCompleted("tasks", id);
 
       return res.writeHead(200).end();
     },
